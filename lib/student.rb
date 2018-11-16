@@ -36,7 +36,7 @@ class Student
     sql = "SELECT * FROM students WHERE grade < 12"
     DB[:conn].execute(sql)
   end
-
+  
   def self.first_x_students_in_grade_10(x)
     sql = "SELECT * FROM students WHERE grade = 10 LIMIT ?"
     DB[:conn].execute(sql, x)
@@ -53,17 +53,15 @@ class Student
     DB[:conn].execute(sql, x)
   end
 
-
   def save
     sql = <<-SQL
-      INSERT INTO students (name, grade)
+      INSERT INTO students (name, grade) 
       VALUES (?, ?)
     SQL
 
     DB[:conn].execute(sql, self.name, self.grade)
   end
-
-
+  
   def self.create_table
     sql = <<-SQL
     CREATE TABLE IF NOT EXISTS students (
