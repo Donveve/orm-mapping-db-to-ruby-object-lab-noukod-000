@@ -45,6 +45,10 @@ class Student
       self.new_from_db(row)
     end.first
   end
+  def self.first_x_students_in_grade_10(num)
+  sql = "SELECT * FROM students WHERE grade=10 ORDER BY students.id LIMIT ?;"
+  DB[:conn].execute(sql, num)
+end
   def self.count_all_students_in_grade_9
     sql = <<-SQL
     SELECT COUNT(grade)
